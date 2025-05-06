@@ -1,8 +1,8 @@
 #include "../../includes/minishell.h"
 
-void  unclosed_quotes(const char *input)
+bool unclosed_quotes(const char *input)
 {
-  int (i), (single_q), (double_q);
+  int i, single_q, double_q;
 
   i = 0;
   single_q = 0;
@@ -18,15 +18,18 @@ void  unclosed_quotes(const char *input)
   if (single_q || double_q)
   {
     printf("Error: Unclosed quotes\n");
-    return (false);
+    return false;
   }
+  return true;
 }
 
 bool validate_syntax(const char *input)
 {
   int i;
 
-  unclosed_quotes(input);
+  if (!unclosed_quotes(input))
+    return false;
+
   i = 0;
   while (input[i])
   {
