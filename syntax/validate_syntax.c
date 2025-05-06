@@ -1,11 +1,12 @@
 #include "../../includes/minishell.h"
 
-bool validate_syntax(const char *input)
+void  unclosed_quotes(const char *input)
 {
-  int i = 0;
-  int single_q = 0;
-  int double_q = 0;
+  int (i), (single_q), (double_q);
 
+  i = 0;
+  single_q = 0;
+  double_q = 0;
   while (input[i])
   {
     if (input[i] == '\'' && !double_q)
@@ -19,6 +20,13 @@ bool validate_syntax(const char *input)
     printf("Error: Unclosed quotes\n");
     return (false);
   }
+}
+
+bool validate_syntax(const char *input)
+{
+  int i;
+
+  unclosed_quotes(input);
   i = 0;
   while (input[i])
   {
