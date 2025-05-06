@@ -1,22 +1,11 @@
 #include "../includes/minishell.h"
 
-int main(int ac, char **av)
+void  multi_to_single_space(char **av, char *res, int ac)
 {
-  if (ac < 2)
-  {
-    printf("\n");
-    return 0;
-  }
-  int i, j, k;
-  char *res = malloc(1000);
-  if (res == NULL)
-  {
-    perror("malloc");
-    return 1;
-  }
+  int (i), (j), (k);
 
-  k = 0;
   i = 1;
+  k = 0;
   while (i < ac)
   {
     j = 0;
@@ -36,7 +25,22 @@ int main(int ac, char **av)
     i++;
   }
   res[k] = '\0';
+}
 
+int main(int ac, char **av)
+{
+  if (ac < 2)
+  {
+    printf("\n");
+    return 0;
+  }
+  char *res = malloc(1000);
+  if (res == NULL)
+  {
+    perror("malloc");
+    return 1;
+  }
+  multi_to_single_space(av, res, ac);
   printf("%s\n", res);
   free(res);
 
