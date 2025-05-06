@@ -6,20 +6,25 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdbool.h>
+#include <signal.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 // Define the maximum length for command input
 #define MAX_CMD_LENGTH 1024
 
 // Structure for linked list nodes to store commands
-typedef struct s_command {
+typedef struct s_command
+{
     char *cmd;
     char **args;
     struct s_command *next;
 } t_command;
 
 // Function prototypes
-bool    is_blank_line(const char *s);
-void    print_syntax_error(const char *msg);
-bool    validate_syntax(const char *input);
+bool is_blank_line(const char *s);
+void print_syntax_error(const char *msg);
+bool validate_syntax(const char *input);
+char **ft_split(const char *str, char delimiter);
 
 #endif // MINISHELL_H
