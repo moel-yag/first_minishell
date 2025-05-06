@@ -1,12 +1,16 @@
 CC = gcc
+
 CFLAGS = -Wall -Wextra -Werror -Iincludes -I./src/utils -I./src/shell -I./src/commands -I./src/parser
+
 SRC = src/main.c \
       src/shell/shell.c \
       src/commands/commands.c \
       src/utils/linked_list.c \
       src/utils/error_handling.c \
-      src/parser/parser.c
+      src/parser/parser.c  src/syntax/validate_syntax.c
+      
 OBJ = $(SRC:.c=.o)
+
 NAME = minishell
 
 all: $(NAME)

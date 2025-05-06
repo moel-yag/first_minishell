@@ -20,5 +20,6 @@ typedef struct s_command {
 // Function prototypes
 bool    is_blank_line(const char *s);
 void    print_syntax_error(const char *msg);
+bool    validate_syntax(const char *input);
 
 #endif // MINISHELL_H
