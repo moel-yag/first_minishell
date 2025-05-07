@@ -25,16 +25,16 @@ bool unclosed_quotes(const char *input)
 
 bool validate_syntax(const char *input)
 {
-    t_lexer *lex = tokenize_input(input); // Assume tokenize_input creates a lexer list
+    t_lexer *lex = tokenize_input(input);
     if (!lex)
         return false;
 
-    if (check_syntax(lex) != 0) // Use check_syntax from ./syntax
+    if (check_syntax(lex) != 0)
     {
-        free_lexer(lex); // Free lexer memory
+        free_lexer(lex);
         return false;
     }
 
-    free_lexer(lex); // Free lexer memory after validation
+    free_lexer(lex);
     return true;
 }
