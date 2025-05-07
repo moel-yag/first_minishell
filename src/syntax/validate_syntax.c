@@ -25,31 +25,16 @@ bool unclosed_quotes(const char *input)
 
 bool validate_syntax(const char *input)
 {
-  int i;
-
-  if (!unclosed_quotes(input))
-    return false;
-
-  i = 0;
-  while (input[i])
-  {
-    if (input[i] == '>' || input[i] == '<')
-    {
-      if (!input[i + 1] || input[i + 1] == '|' || input[i + 1] == '>' || input[i + 1] == '<')
-      {
-        printf("Error: Invalid redirection\n");
+    t_lexer *lex = tokenize_input(input); // Assume tokenize_input creates a lexer list
+    if (!lex)
         return false;
-      }
-    }
-    if (input[i] == '|')
+
+    if (check_syntax(lex) != 0) // Use check_syntax from ./syntax
     {
-      if (i == 0 || !input[i + 1] || input[i + 1] == '|')
-      {
-        printf("Error: Invalid pipe\n");
+        free_lexer(lex); // Free lexer memory
         return false;
-      }
     }
-    i++;
-  }
-  return true;
+
+    free_lexer(lex); // Free lexer memory after validation
+    return true;
 }
